@@ -15,7 +15,7 @@ public class DropDowntest {
     DropDownPage dropdownPage = new DropDownPage();
 
     @Test
-    public void dropDownTest() {
+    public void dropDownTest1() {
         //TC#1
         //1. Go to http://practice.cydeo.com/dropdown
         Driver.getDriver().get("http://practice.cydeo.com/dropdown");
@@ -42,7 +42,36 @@ public class DropDowntest {
         //5. Verify final selected option is California.
 
     }
+    @Test
+    public void dropDownTest2(){
+        //TC#2
+        //Select “December 1st, 1950g” and verify it is selected.
+        //1. Go to http://practice.cydeo.com/dropdown
+        Driver.getDriver().get("http://practice.cydeo.com/dropdown");
 
+        //2. Select Year --> by visible text
+        Select selectyear=new Select(dropdownPage.year);
+        selectyear.selectByVisibleText("1950");
+        String expectedYear="1950";
+        String actualYear=selectyear.getFirstSelectedOption().getText();
+        assertEquals(actualYear,expectedYear,"Year did not select correctly");
+
+        //3. Select Month -->  by value
+        Select selectmonth=new Select(dropdownPage.month);
+        selectmonth.selectByValue("11");
+        String expectedMonth="December";
+        String actualMonth= selectmonth.getFirstSelectedOption().getText();
+        assertEquals(actualMonth,expectedMonth,"Month did not select correctly");
+
+        //4. Select Day -->  by index
+        Select selectday=new Select(dropdownPage.day);
+        selectday.selectByIndex(0);
+        String expectedDay="1";
+        String actualDay= selectday.getFirstSelectedOption().getText();
+        assertEquals(actualDay,expectedDay,"Day did not select correctly");
+
+
+    }
 
 
 
